@@ -9,14 +9,14 @@ class solr5::config inherits solr5 {
 
   concat { $config_file:
     ensure => present,
-    owner => $solr_user,
-    group => $solr_user
+    owner  => $solr_user,
+    group  => $solr_user
   }
 
   concat::fragment { 'solr_config_base':
     target => $config_file,
     source => "${sources}/bin/solr.in.sh",
-    order => '01'
+    order  => '01'
   }
 
   $settings = concat($init_config, [
@@ -28,8 +28,8 @@ class solr5::config inherits solr5 {
   ])
 
   concat::fragment { 'solr_config_ext':
-    target => $config_file,
+    target  => $config_file,
     content => template('solr5/solr.in.sh.erb'),
-    order => '02'
+    order   => '02'
   }
 }

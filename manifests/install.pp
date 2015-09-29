@@ -12,6 +12,11 @@ class solr5::install inherits solr5 {
      archive_filename => "${solr_archive_file_name}",
      file_to_extract  =>'install_solr_service.sh'
   } ->
+  exec { 'make installer executable':
+    command => "chmod u+x ${package_target_dir}/install_solr_service.sh",
+    cwd     => "${package_target_dir}",
+    path    => "/bin/"
+  } ->
   exec { 'install-solr':
     command => "${package_target_dir}/install_solr_service.sh ${package_target_dir}/${solr_archive_file_name} \
       -u ${solr_user} \
