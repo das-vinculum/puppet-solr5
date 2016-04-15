@@ -6,7 +6,7 @@ class solr5::service(
 
     service { $solr_name:
       ensure    => running,
-      provider  => 'init',
+      provider  => 'redhat',
       enable    => true,
       hasstatus => false
     }

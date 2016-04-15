@@ -43,7 +43,7 @@ describe 'solr5::service', :type => 'class' do
       should contain_service('my_fancy_solr_name').with(
         {
           'ensure' => 'running',
-          'provider' => 'init',
+          'provider' => 'redhat',
           'enable' => 'true',
           'hasstatus' => 'false',
         })
